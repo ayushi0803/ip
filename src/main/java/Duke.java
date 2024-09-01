@@ -13,7 +13,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         Task[] tasks = new Task[100]; // Array to store up to 100 tasks
         int taskCount = 0; // Counter to track the number of tasks added
-
+        //LEVEL 1,2,3 WEEK 3
         while (true) {
             String input = scanner.nextLine();
             System.out.println("____________________________________________________________");
