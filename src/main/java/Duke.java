@@ -5,7 +5,7 @@ public class Duke {
         // Print the welcome message
         //LEVEL 0 WEEK 2
         System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Ayushi.");
+        System.out.println(" Hello! I'm V.");
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
 
@@ -56,3 +56,4 @@ public class Duke {
         scanner.close();
     }
 }
+
