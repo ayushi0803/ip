@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         // Print the welcome message
-        //LEVEL 0 WEEK 2
+        @Level-0
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Ruhi.");
         System.out.println(" _______  _   _   _   _  ____");
