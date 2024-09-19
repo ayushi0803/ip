@@ -5,7 +5,18 @@ public class Duke {
         // Print the welcome message
         //LEVEL 0 WEEK 2
         System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm V.");
+        System.out.println(" Hello! I'm Ruhi.");
+        System.out.println(" _______  _   _   _   _  ____");
+        System.out.println("|  ___  |  -   -   -  ----.");
+        System.out.println("| |   | |   -   -   -   -  ----.");
+        System.out.println("| |___| | -   -   -   -  ----.");
+        System.out.println("| |   \  \                     ");
+        System.out.println("| |    \  \                   ");
+        System.out.println("|_|     \__\                    ");
+        System.out.println("|       |                      ");
+        System.out.println("|       |                      ");
+        System.out.println("|       |                      ");
+
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
 
