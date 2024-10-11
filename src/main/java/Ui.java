@@ -14,7 +14,7 @@ public class Ui {
   }
 
   public String readCommand() {
-    return scanner.nextLine();
+    return scanner.nextLine().trim();  // Trim input to remove leading/trailing spaces
   }
 
   public void showLine() {

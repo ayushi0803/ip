@@ -8,15 +8,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import jdk.internal.org.jline.utils.ShutdownHooks.Task;
 
 public class Ruhi {
   //class attributes
   /**
    * Inititalises Ruhi with specified file path for load and store tasks
    */
-  private Storage storage;
+  private final Storage storage;
   private TaskList tasks;
-  private Ui ui;
+  private final Ui ui;
 
   public Ruhi(String filePath) {
     //constructor implementation
@@ -46,11 +47,7 @@ public class Ruhi {
         String fullCommand = ui.readCommand();
         ui.showLine();
         String[] parsedCommand = Parser.parse(fullCommand);
-        handleCommand(parsedCommand);
-        if (parsedCommand[0].equals("bye")) {
-          isExit = true;
-          System.out.println(" Bye. Hope to see you again soon!");
-        }
+        isExit = handleCommand(parsedCommand);  // If "bye", isExit becomes true
       } catch (Exception e) {
         ui.showError(e.getMessage());
       } finally {
@@ -59,12 +56,16 @@ public class Ruhi {
     }
   }
 
-  private void handleCommand(String[] parsedCommand) {
+  private boolean handleCommand(String[] parsedCommand) {
     //method implementation
     /**
      *  Handles the parsed user commands and executes the appropriate
      * actions based on the command type.
      */
+    // Check if the parsed command has at least one element
+    if (parsedCommand.length == 0) {
+      throw new RuntimeException("Please enter a command.");
+    }
     switch (parsedCommand[0]) {
       case "list":
         System.out.println(" Here are the tasks in your list:");
@@ -72,6 +73,9 @@ public class Ruhi {
           System.out.println((i + 1) + "." + tasks.getTask(i));
         }
         break;
+      case "bye":
+        System.out.println(" Bye. Hope to see you again soon!");
+        return true;
       case "mark":
         int markIndex = Integer.parseInt(parsedCommand[1]) - 1;
         tasks.getTask(markIndex).markAsDone();
@@ -106,7 +110,7 @@ public class Ruhi {
         } catch (DateTimeParseException e) {
           System.out.println(" Please provide a valid date format (yyyy-mm-dd HH:mm).");
         }
-        break; 
+        break;
       case "find":
         String keyword = parsedCommand[1]; // Get the search keyword
         List<Task> foundTasks = tasks.findTasks(keyword); // Find tasks containing the keyword
@@ -115,11 +119,10 @@ public class Ruhi {
           System.out.println((i + 1) + "." + foundTasks.get(i));
         }
         break;
-      default: 
-        throw new RuntimeException("Unknown command.");
-    }
+      default:
+        throw new RuntimeException("Unknown command. Valid commands are: list, mark, unmark, delete, add, deadline, find, bye.");
   }
-  
+
   private LocalDateTime parseDateTime(String dateTimeStr) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     return LocalDateTime.parse(dateTimeStr, formatter);
